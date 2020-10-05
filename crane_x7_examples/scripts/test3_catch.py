@@ -47,42 +47,18 @@ def main():
     """
 
     """追加"""
-
+    
     # 手動で姿勢を指定するには以下のように指定
     target_pose = geometry_msgs.msg.Pose()
     target_pose.position.x = 0.0
     target_pose.position.y = 0.0
     target_pose.position.z = 0.624
-    q = quaternion_from_euler(0.0, 0.0, 0.0)
+    q = quaternion_from_euler( 0.0, 0.0, 0.0 )
     target_pose.orientation.x = q[0]
     target_pose.orientation.y = q[1]
     target_pose.orientation.z = q[2]
     target_pose.orientation.w = q[3]
-    arm.set_pose_target(target_pose)  # 目標ポーズ設定
-    arm.go()							# 実行
-
-    target_pose = geometry_msgs.msg.Pose()
-    target_pose.position.x = 10.0
-    target_pose.position.y = 10.0
-    target_pose.position.z = 0.624
-    q = quaternion_from_euler(0.0, 0.0, 0.0)
-    target_pose.orientation.x = q[0]
-    target_pose.orientation.y = q[1]
-    target_pose.orientation.z = q[2]
-    target_pose.orientation.w = q[3]
-    arm.set_pose_target(target_pose)  # 目標ポーズ設定
-    arm.go()							# 実行
-
-    target_pose = geometry_msgs.msg.Pose()
-    target_pose.position.x = 0.0
-    target_pose.position.y = 0.0
-    target_pose.position.z = 0.624
-    q = quaternion_from_euler(0.0, 0.0, 0.0)
-    target_pose.orientation.x = q[0]
-    target_pose.orientation.y = q[1]
-    target_pose.orientation.z = q[2]
-    target_pose.orientation.w = q[3]
-    arm.set_pose_target(target_pose)  # 目標ポーズ設定
+    arm.set_pose_target( target_pose )	# 目標ポーズ設定
     arm.go()							# 実行
 
     """ここまで"""

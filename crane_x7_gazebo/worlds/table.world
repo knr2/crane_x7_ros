@@ -25,7 +25,40 @@
     -->
 
     <model name="cup1">
-  <pose>0.4 -0.01 1.5 0 0 0</pose>
+  <pose>0.18 0.13 1.5 0 0 0</pose>
+    <link name="link">
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+		<ixx>0.083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+		  <radius>0.024</radius>
+		  <length>0.06</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+		  <radius>0.024</radius>
+		  <length>0.06</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+
+  <model name="cup2">
+  <pose>0.19 -0.11 1.5 0 0 0</pose>
     <link name="link">
       <inertial>
         <mass>0.01</mass>

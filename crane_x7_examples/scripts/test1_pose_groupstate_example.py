@@ -70,9 +70,9 @@ def main():
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.23, 0.2, 0.055)
-
+#HHH
     #ハンドを閉じる
-    move_gripper(0.29)
+    move_gripper(0.28)
     move_max_velocity()
     
     #持ち上げる

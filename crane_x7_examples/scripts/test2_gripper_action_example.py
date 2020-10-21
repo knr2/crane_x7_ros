@@ -4,6 +4,8 @@
 # このサンプルは実機動作のみに対応しています
 # fake_execution:=trueにすると、GripperCommandActionのサーバが立ち上がりません
 
+#アームを開くだけ
+
 import sys
 import rospy
 import time
@@ -53,7 +55,7 @@ def main():
 
     # Open grippers(45degrees)
     print "Open Gripper."
-    gripper = 45.0
+    gripper = 30.0
     gc.command(math.radians(gripper),0.10)
     result = gc.wait(2.0)
     print result
@@ -61,27 +63,6 @@ def main():
     print ""
     print result
     print ""
-
-    # Open grippers(45degrees)
-    print "Open Gripper."
-    gripper = 47.0
-    gc.command(math.radians(gripper),0.01)
-    print result
-    print ""
-
-    # Open grippers(45degrees)
-    print "Open Gripper."
-    gripper = 45.0
-    gc.command(math.radians(gripper),0.01)
-    print result
-    print ""
-
-    # Close grippers
-    print "Close Gripper."
-    gripper = 0.0 # 0.0
-    gc.command(math.radians(gripper),0.01)
-    print result
-    time.sleep(1)
 
 if __name__ == "__main__":
     main()

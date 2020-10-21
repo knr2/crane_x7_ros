@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 
 #共有用
+
+"""
+引用元
+紙コップ　→　https://github.com/GakuKuwano/crane_x7_ros/blob/master/crane_x7_gazebo/worlds/table2.world
+アーム動作　→　https://github.com/GakuKuwano/crane_x7_ros/blob/master/crane_x7_examples/scripts/papercup_tower.py
+"""
+
 """
 流れ
 準備
@@ -11,7 +18,7 @@
 
         #ボールの確認
 
-    1.	コップAの上に移動
+    1.	コップAの手前に移動
     2.	アーム先端を下に向ける
     3.	アームを垂直に下げる
     4.	コップAの下部を握る
@@ -144,7 +151,7 @@ def main():
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.23, 0.2, 0.055)
-#HHH
+
     #ハンドを閉じる
     move_gripper(0.28)
     move_max_velocity()

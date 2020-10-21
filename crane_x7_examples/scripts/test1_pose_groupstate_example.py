@@ -42,9 +42,9 @@ def main():
     # コップ上部をつかむ位置へ移動１
     def move_arm_upper(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 1.0
+        target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.095
+        target_pose.position.z = 0.075
         q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -56,9 +56,9 @@ def main():
     # コップ上部をつかむ位置へ移動２
     def move_arm_upper_catch(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x
+        target_pose.position.x = pos_x - 0.08
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.095
+        target_pose.position.z = 0.075
         q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -70,7 +70,7 @@ def main():
     # コップ下部をつかむ位置へ移動１
     def move_arm_lower(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 1.0
+        target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
         target_pose.position.z = -0.005
         q = quaternion_from_euler(-3.14/2.0 - 0.25, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
@@ -84,7 +84,7 @@ def main():
     # コップ下部をつかむ位置へ移動２
     def move_arm_lower_catch(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x
+        target_pose.position.x = pos_x - 0.08
         target_pose.position.y = pos_y
         target_pose.position.z = -0.005
         q = quaternion_from_euler(-3.14/2.0 - 0.25, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
@@ -103,24 +103,28 @@ def main():
     move_gripper(1.3)
     
     #掴む準備をする-----1
-
-    move_arm_upper(0.27, -0.11)
     move_gripper(1.3)
-    move_arm_upper_catch(0.27, -0.11)
+    move_arm_upper(0.37, -0.11)
+    move_gripper(1.3)
+    move_arm_upper_catch(0.37, -0.11)
     move_gripper(0.28)
+
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
 
-    move_arm_lower(0.27, -0.11)
     move_gripper(1.3)
-    move_arm_lower_catch(0.27, -0.11)
+    move_arm_lower(0.37, -0.11)
+    move_gripper(1.3)
+    move_arm_lower_catch(0.37, -0.11)
     move_gripper(0.28)
+
     move_max_velocity()
+    arm.set_named_target("home")
+    arm.go()
 
     """
     move_arm(0.15, 0.2, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.23, 0.2, 0.055)
@@ -131,356 +135,252 @@ def main():
     
     #持ち上げる
     move_arm(0.15, 0.2, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.455, 0.0, 0.068)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.455, 0.0, 0.15)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
     #掴む準備をする-----2
     move_arm(0.23, -0.1, 0.2)
     move_arm(0.15, -0.2, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.23, -0.2, 0.055)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.2, -0.2, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.395, 0.0, 0.063)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.3, 0.0, 0.17)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----3
     move_arm(0.18, 0.15, 0.2)
     move_arm(0.1, 0.3, 0.17)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.18, 0.3, 0.055)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.1, 0.3, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.335, 0.0, 0.062)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.335, 0.0, 0.15)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----4
     move_arm(0.18, -0.15, 0.2)
     move_arm(0.1, -0.3, 0.17)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.18, -0.3, 0.055)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.1, -0.3, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.275, 0.0, 0.062)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.275, 0.0, 0.15)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----5
     move_arm(0.18, 0.2, 0.2)
     move_arm(0.13, 0.4, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.18, 0.4, 0.065)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.13, 0.4, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.425, 0.0, 0.13)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.425, 0.0, 0.15)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----6
     move_arm(0.18, -0.2, 0.2)
     move_arm(0.13, -0.4, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.18, -0.4, 0.065)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.13, -0.4, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.365, 0.0, 0.13)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.365, 0.0, 0.15)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----7
     move_arm(0.28, 0.15, 0.2)
     move_arm(0.2, 0.3, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.28, 0.3, 0.065)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.2, 0.3, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.305, 0.0, 0.12)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.305, 0.0, 0.15)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----8
     move_arm(0.28, -0.15, 0.15)
     move_arm(0.2, -0.3, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.28, -0.3, 0.065)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.2, -0.3, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.395, 0.0, 0.20)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.395, 0.0, 0.23)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----9
     move_arm(0.28, 0.2, 0.2)
     move_arm(0.2, 0.4, 0.13)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.28, 0.4, 0.065)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.2, 0.4, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
  
     #下ろす
     move_arm(0.335, 0.0, 0.18)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.335, 0.0, 0.23)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
-
     #掴む準備をする-----10
     move_arm(0.28, -0.2, 0.2)
     move_arm(0.2, -0.4, 0.15)
-
     #掴みに行く
     arm.set_max_velocity_scaling_factor(0.1)
     move_arm(0.28, -0.4, 0.065)
-
     #ハンドを閉じる
     move_gripper(0.29)
     move_max_velocity()
-
     #持ち上げる
     move_arm(0.2, -0.4, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
     #頂点に振り上げる
     move_arm(0.1, 0.0, 0.5)
-
     #あおり
     move_arm(0.22, -0.2, 0.2)
-
     #頂点に振り上げる
     move_arm(0.1, 0.0, 0.5)
-
     #あおり
     move_arm(0.22, 0.2, 0.2)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
     #下ろす
     move_arm(0.365, 0.0, 0.25)
-
     #ハンドを開く
     move_gripper(1.3)
-
     #少しだけハンドを持ち上げる
     move_arm(0.365, 0.0, 0.3)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
     rospy.sleep(3.0)
-
     #破壊
     move_arm(0.22, -0.2, 0.1)
     move_arm(0.38, 0.15, 0.1)
-
     #homeに戻る
     arm.set_named_target("home")
     arm.go()
-
-
     print("done")
 """
 

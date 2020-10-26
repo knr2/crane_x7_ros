@@ -198,6 +198,7 @@ def main():
     move_gripper(1.3)
     
     #掴む準備をする-----1
+    #A up
     aa = position_manager(True,True, 0.37, -0.11, False)
     move_gripper(1.3)
     move_arm_upper(aa[0], aa[1])
@@ -205,6 +206,14 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     move_gripper(0.28)
     move_arm_upeer_up(aa[0], aa[1])
+    move_arm_upeer_up(aa[0], aa[1])
+    move_arm_upeer_up(aa[0], aa[1])
+    move_arm_upeer_up(aa[0], aa[1])
+    move_arm_upper_catch(aa[0], aa[1])
+    move_gripper(1.3)
+    move_arm_upper_catch(aa[0], aa[1])
+
+
 
     move_max_velocity()
     arm.set_named_target("home")

@@ -27,7 +27,73 @@ def main():
     print("Current state:")
     print(robot.get_current_state())
 
+    #紙Aコップのx座標　紙Aコップのy座標　紙Bコップx座標 紙Bコップy座標
+    position_base =[[0.37, 0.13, 0.37, -0.11]]
+    Acup_tukamu = False
+    Bcup_tukamu = False
 
+    """
+    使い方
+    ハンドをつかんだ時は
+    position_manager(False,False,x,y,True)
+
+    ハンドをはなした時は
+    position_manager(False,False,x,y,False)
+
+    Aカップをつかみたい時の手先の位置を知りたいときは
+    aa = position_manager(True,True,0,0,False)
+    x = aa[0]
+    y = aa[1]
+
+    BBカップをつかみたい時の手先の位置を知りたいときは
+    aa = position_manager(True,False,0,0,False)
+    x = aa[0]
+    y = aa[1]
+    """
+    def position_manager(master_judge,paper_cup,x,y,tukami):
+        global Acup_tukamu
+        global Bcup_tukamu
+        position_ret=[0.0,0.0]
+        if master_judge == True:
+            if len(position_base)>0:
+            
+            #ホンスワン
+                if paper_cup == True:
+                    position_ret[0] = position_base[len(position_base)-1][2]
+                    position_ret[1] = position_base[len(position_base)-1][3]
+                    #position_historyの末尾の紙Aコップのx座標y座標
+                    return position_ret
+                else:
+                    position_ret[0] = position_base[len(position_base)-1][0]
+                    position_ret[1] = position_base[len(position_base)-1][1]
+                    #position_historyの末尾の紙Bコップのx座標y座標
+                    return position_ret
+            
+            else:
+                return position_ret
+            
+        else:
+            #熊谷さん
+            #position_base配列の末尾にx,yを追加
+            if tukami == True:
+                #Aをつかんでいる場合
+                if position_base[len(position_base)-1][0] == x and position_base[len(position_base)-1][1] == y:
+                    position_base.append([x,y,position_base[len(position_base)-1][2],position_base[len(position_base)-1][3]])
+                    Acup_tukamu = True
+                #Bをつかんでいる場合
+                elif position_base[len(position_base)-1][2] == x and position_base[len(position_base)-1][3] == y:
+                    position_base.append([position_base[len(position_base)-1][0],position_base[len(position_base)-1][1],x,y])
+                    Bcup_tukamu = True
+            else:
+                #Aをはなした時
+                if Acup_tukamu == True:
+                    position_base.append([x,y,position_base[len(position_base)-1][2],position_base[len(position_base)-1][3]])
+                    Acup_tukamu = False
+                elif Bcup_tukamu == True:
+                    position_base.append([position_base[len(position_base)-1][0],position_base[len(position_base)-1][1],x,y])
+                    Bcup_tukamu = False
+                    
+            return position_ret
 
     # アーム初期ポーズを表示
     arm_initial_pose = arm.get_current_pose().pose
@@ -115,7 +181,7 @@ def main():
         target_pose.position.x = pos_x - 0.06
         target_pose.position.y = pos_y
         target_pose.position.z = -0.01 + 0.1
-        q = quaternion_from_euler(-3.14/2.0 - 0.2, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -132,22 +198,25 @@ def main():
     move_gripper(1.3)
     
     #掴む準備をする-----1
+    aa = position_manager(True,True, 0.37, -0.11, False)
     move_gripper(1.3)
-    move_arm_upper(0.37, -0.11)
+    move_arm_upper(aa[0], aa[1])
     move_gripper(1.3)
-    move_arm_upper_catch(0.37, -0.11)
+    move_arm_upper_catch(aa[0], aa[1])
     move_gripper(0.28)
-    move_arm_upeer_up(0.37, -0.11)
+    move_arm_upeer_up(aa[0], aa[1])
+
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
 
+    aa = position_manager(True,False, 0.37, -0.11, False)
     move_gripper(1.3)
-    move_arm_lower(0.37, -0.11)
+    move_arm_lower(aa[0], aa[1])
     move_gripper(1.3)
-    move_arm_lower_catch(0.37, -0.11)
+    move_arm_lower_catch(aa[0], aa[1])
     move_gripper(0.28)
-    move_arm_lower_up(0.37, -0.11)
+    move_arm_lower_up(aa[0], aa[1])
 
     move_max_velocity()
     arm.set_named_target("home")

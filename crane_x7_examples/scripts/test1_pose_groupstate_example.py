@@ -27,6 +27,10 @@ def main():
     print("Current state:")
     print(robot.get_current_state())
 
+    ###
+    ###     b-group
+    ###
+
     #紙Aコップのx座標　紙Aコップのy座標　紙Bコップx座標 紙Bコップy座標
     position_base =[[0.37, 0.13, 0.37, -0.11]]
     Acup_tukamu = False
@@ -95,6 +99,14 @@ def main():
                     
             return position_ret
 
+    ###
+    ###     b-group-end
+    ###
+
+    ###
+    ###     a-group
+    ###
+
     # アーム初期ポーズを表示
     arm_initial_pose = arm.get_current_pose().pose
     print("Arm initial pose:")
@@ -150,7 +162,7 @@ def main():
     # コップ下部をつかむ位置へ移動２
     def move_arm_lower_catch(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 0.06
+        target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = -0.01
         q = quaternion_from_euler(-3.14/2.0 - 0.2, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
@@ -178,7 +190,7 @@ def main():
     # コップの下を持ち上へ移動
     def move_arm_lower_up(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 0.06
+        target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = -0.01 + 0.1
         q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
@@ -189,6 +201,9 @@ def main():
         arm.set_pose_target(target_pose)  # 目標ポーズ設定
         arm.go()  # 実行
 
+    ###
+    ###     a-group-end
+    ###
 
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
@@ -199,7 +214,7 @@ def main():
     
     #掴む準備をする-----1
     #A up
-    aa = position_manager(True,True, 0.37, -0.11, False)
+    aa = position_manager(True,True, 0, 0, False)
     move_gripper(1.3)
     move_arm_upper(aa[0], aa[1])
     move_gripper(1.3)
@@ -212,24 +227,30 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     move_gripper(1.3)
     move_arm_upper_catch(aa[0], aa[1])
-
-
-
+    move_gripper(1.3)
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
 
-    aa = position_manager(True,False, 0.37, -0.11, False)
+    #B up
+    aa = position_manager(True,False, 0, 0, False)
     move_gripper(1.3)
     move_arm_lower(aa[0], aa[1])
     move_gripper(1.3)
     move_arm_lower_catch(aa[0], aa[1])
     move_gripper(0.28)
     move_arm_lower_up(aa[0], aa[1])
-
+    move_arm_lower_up(aa[0], aa[1])
+    move_arm_lower_up(aa[0], aa[1])
+    move_arm_lower_up(aa[0], aa[1])
+    move_arm_lower_catch(aa[0], aa[1])
+    move_gripper(1.3)
+    move_arm_lower_catch(aa[0], aa[1])
+    move_gripper(1.3)
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
+
     """
     move_arm(0.15, 0.2, 0.15)
     #掴みに行く

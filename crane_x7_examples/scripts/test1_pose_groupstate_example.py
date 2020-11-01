@@ -230,7 +230,7 @@ def main():
     # コップ上部をつかむ位置へ移動２
     def move_arm_upper_catch(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 0.06
+        target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = 0.075
         q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
@@ -272,7 +272,7 @@ def main():
     # コップの上を持ち上へ移動
     def move_arm_upper_up(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 0.06
+        target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = 0.075 + 0.1
         q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合

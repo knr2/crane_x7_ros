@@ -24,7 +24,7 @@
     -->
 
     <model name="cup1">
-  <pose>0.37 0.13 1.5 0 0 0</pose>
+  <pose>0.35 0.13 1.5 0 0 0</pose>
     <link name="link">
       <inertial>
         <mass>0.01</mass>
@@ -57,7 +57,7 @@
   </model>
 
   <model name="cup2">
-  <pose>0.37 -0.11 1.5 0 0 0</pose>
+  <pose>0.35 -0.11 1.5 0 0 0</pose>
     <link name="link">
       <inertial>
         <mass>0.01</mass>

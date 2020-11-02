@@ -232,10 +232,8 @@ def main():
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
     move_arm_lower_catch(aa[0], aa[1])
-    move_arm_lower_catch(aa[0], aa[1])
-    move_arm_lower_catch(aa[0], aa[1])
-    move_arm_lower_catch(aa[0], aa[1])
-    move_arm_lower_catch(aa[0], aa[1])
+    print("グリッパ内にボールを入れた紙コップを設置してください。設置し終わったらEnterを押してください。")
+    input()
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_lower_up(aa[0], aa[1])
     move_max_velocity()
@@ -253,10 +251,8 @@ def main():
     move_arm_upper(aa[0], aa[1])
     #アームをコップの下部とくっつける
     move_arm_upper_catch(aa[0], aa[1])
-    move_arm_upper_catch(aa[0], aa[1])
-    move_arm_upper_catch(aa[0], aa[1])
-    move_arm_upper_catch(aa[0], aa[1])
-    move_arm_upper_catch(aa[0], aa[1])
+    print("グリッパ内に空の紙コップを設置してください。設置し終わったらEnterを押してください。")
+    input()
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1])
     move_max_velocity()
@@ -271,10 +267,8 @@ def main():
     move_gripper(1.3)
     #アームをボールの位置に
     move_arm_upper_catch(aa[0], aa[1] + 0.1)
-    move_arm_upper_catch(aa[0], aa[1] + 0.1)
-    move_arm_upper_catch(aa[0], aa[1] + 0.1)
-    move_arm_upper_catch(aa[0], aa[1] + 0.1)
-    move_arm_upper_catch(aa[0], aa[1] + 0.1)
+    print("グリッパ内にボールを設置してください。設置し終わったらEnterを押してください。")
+    input()
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1] + 0.1)
     move_max_velocity()

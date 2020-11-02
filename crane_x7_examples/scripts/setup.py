@@ -133,7 +133,7 @@ def main():
         target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
         target_pose.position.z = 0.075
-        q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -147,7 +147,7 @@ def main():
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = 0.075
-        q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -161,7 +161,7 @@ def main():
         target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
         target_pose.position.z = -0.01
-        q = quaternion_from_euler(-3.14/2.0 - 0.2, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0 + 0.2, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -175,7 +175,7 @@ def main():
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = -0.01
-        q = quaternion_from_euler(-3.14/2.0 - 0.2, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0 + 0.2, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -189,7 +189,7 @@ def main():
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = 0.075 + 0.1
-        q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -203,7 +203,7 @@ def main():
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
         target_pose.position.z = -0.01 + 0.1
-        q = quaternion_from_euler(-3.14/2.0, 0.0, -3.14/2.0)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]

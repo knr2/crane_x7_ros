@@ -1,4 +1,4 @@
-[English](README.en.md) | [日本語](README.md)
+[English](README.en.md) | [日本語](README.md) | [マジック](README.magic.md)
 
 # crane_x7_examples
 

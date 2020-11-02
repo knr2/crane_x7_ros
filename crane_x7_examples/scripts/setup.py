@@ -234,6 +234,7 @@ def main():
     move_arm_lower_catch(aa[0], aa[1])
     print("グリッパ内にボールを入れた紙コップを設置してください。")
     rospy.sleep(5.0)
+    print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_lower_up(aa[0], aa[1])
     move_max_velocity()
@@ -253,6 +254,7 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     print("グリッパ内に空の紙コップを設置してください。")
     rospy.sleep(5.0)
+    print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1])
     move_max_velocity()
@@ -269,6 +271,7 @@ def main():
     move_arm_upper_catch(aa[0], aa[1] + 0.1)
     print("グリッパ内にボールを設置してください。")
     rospy.sleep(5.0)
+    print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1] + 0.1)
     move_max_velocity()

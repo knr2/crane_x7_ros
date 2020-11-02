@@ -114,7 +114,7 @@ def main():
     ###
 
     #紙Aコップのx座標　紙Aコップのy座標　紙Bコップx座標 紙Bコップy座標
-    position_base =[[0.30, 0.13, 0.30, -0.11]]
+    position_base =[[0.29, 0.13, 0.29, -0.11]]
     Acup_tukamu = False
     Bcup_tukamu = False
 

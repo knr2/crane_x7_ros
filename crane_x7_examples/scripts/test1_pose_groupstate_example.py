@@ -301,6 +301,8 @@ def main():
     ###     a-group-end
     ###
 
+    stop_time = 2.0   #停止する時間を指定
+
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
     arm.go()
@@ -323,7 +325,7 @@ def main():
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0], aa[1])
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームを下げる
     move_arm_lower_catch(aa[0], aa[1])
     #グリッパを開き、コップを放す
@@ -350,10 +352,10 @@ def main():
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームをボールの真上へ(空中で停止)
     move_arm_upper_up(aa[0], aa[1] + 0.1)
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームを下げカップをボールにかぶせる
     move_arm_upper_catch(aa[0], aa[1] + 0.1)
     #元の位置へ戻す
@@ -398,7 +400,7 @@ def main():
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0], aa[1])
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームを下げる
     move_arm_lower_catch(aa[0], aa[1])
     #グリッパを開き、コップを放す
@@ -426,7 +428,7 @@ def main():
     move_arm_upper_up(aa[0], aa[1])
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームを下げる
     move_arm_upper_catch(aa[0], aa[1])
     #グリッパを開き、コップを放す
@@ -454,7 +456,7 @@ def main():
     move_arm_upper_up(aa[0], aa[1])
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームを手前に移動
     move_arm_upper_up(aa[0] - 0.13, aa[1])
     #アームを下げる
@@ -483,7 +485,7 @@ def main():
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0], aa[1])
-    rospy.sleep(2.0)
+    rospy.sleep(stop_time)
     #アームを手前に移動
     move_arm_lower_up(aa[0] - 0.13, aa[1])
     #アームを下げる

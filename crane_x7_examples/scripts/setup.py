@@ -214,6 +214,10 @@ def main():
     ###
     ###     a-group-end
     ###
+    
+    stop_time = 2.0   #停止する時間を指定
+
+    rospy.sleep(10.0)
 
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
@@ -233,7 +237,7 @@ def main():
     #アームをコップの下部とくっつける
     move_arm_lower_catch(aa[0], aa[1])
     print("グリッパ内にボールを入れた紙コップを設置してください。")
-    rospy.sleep(5.0)
+    rospy.sleep(stop_time)
     print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_lower_up(aa[0], aa[1])
@@ -253,7 +257,7 @@ def main():
     #アームをコップの下部とくっつける
     move_arm_upper_catch(aa[0], aa[1])
     print("グリッパ内に空の紙コップを設置してください。")
-    rospy.sleep(5.0)
+    rospy.sleep(stop_time)
     print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1])
@@ -270,7 +274,7 @@ def main():
     #アームをボールの位置に
     move_arm_upper_catch(aa[0], aa[1] + 0.1)
     print("グリッパ内にボールを設置してください。")
-    rospy.sleep(5.0)
+    rospy.sleep(stop_time)
     print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1] + 0.1)

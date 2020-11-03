@@ -72,7 +72,6 @@ rosrun crane_x7_examples setup.py
 
 ---
 
-### pose_groupstate_example
 
 マジックを行うためのコードです。
 
@@ -84,5 +83,3 @@ rosrun crane_x7_examples setup.py
 ```sh
 rosrun crane_x7_examples test1_pose_groupstate_example.py
 ```
-
-[back to example list](#run-examples)

@@ -68,10 +68,9 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 rosrun crane_x7_examples setup.py
 ```
 
-[back to example list](#run-examples)
-
 ---
 
+### pose_groupstate_example
 
 マジックを行うためのコードです。
 

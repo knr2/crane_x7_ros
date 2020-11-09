@@ -285,6 +285,20 @@ def main():
         arm.set_pose_target(target_pose)  # 目標ポーズ設定
         arm.go()  # 実行
 
+    # ボールをつかむ位置へ移動
+    def move_arm_ball(pos_x, pos_y):
+        target_pose = geometry_msgs.msg.Pose()
+        target_pose.position.x = pos_x
+        target_pose.position.y = pos_y
+        target_pose.position.z = 0.05
+        q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
+        target_pose.orientation.x = q[0]
+        target_pose.orientation.y = q[1]
+        target_pose.orientation.z = q[2]
+        target_pose.orientation.w = q[3]
+        arm.set_pose_target(target_pose)  # 目標ポーズ設定
+        arm.go()  # 実行
+
     ###
     ###     a-group-end
     ###
@@ -340,12 +354,11 @@ def main():
     #グリッパを開く
     move_gripper(1.3)
     #アームをボールと水平な部分へ移動
-    move_arm_upper(aa[0], aa[1] + 0.1)
+    move_arm_ball(aa[0], aa[1] + 0.1)
     #アームをボールとくっつける
-    move_arm_upper_catch(aa[0], aa[1] + 0.1)
     rospy.sleep(stop_time)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_upper_up(aa[0], aa[1] + 0.1)
+    move_arm_ball(aa[0], aa[1] + 0.1)
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()

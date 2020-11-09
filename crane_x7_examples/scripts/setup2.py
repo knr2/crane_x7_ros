@@ -319,7 +319,7 @@ def main():
     #グリッパを開く
     move_gripper(1.3)
     #アームをコップをくっつける
-    move_arm_upper(aa[0], aa[1])
+    move_arm_upper_catch(aa[0], aa[1])
     print("グリッパ下にボールを入れた紙コップを設置してください。")
     rospy.sleep(stop_time)
     print("次の動作へ進みます。")
@@ -337,7 +337,7 @@ def main():
     #グリッパを開く
     move_gripper(1.3)
     #アームをコップの下部とくっつける
-    move_arm_upper(aa[0], aa[1])
+    move_arm_upper_catch(aa[0], aa[1])
     print("グリッパ下に空の紙コップを設置してください。")
     rospy.sleep(stop_time)
     print("次の動作へ進みます。")

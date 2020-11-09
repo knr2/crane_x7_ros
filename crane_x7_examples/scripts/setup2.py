@@ -290,7 +290,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.05
+        target_pose.position.z = 0.1
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -318,11 +318,11 @@ def main():
     aa = position_manager(True, True, 0, 0, False)
     #グリッパを開く
     move_gripper(1.3)
-    #アームをコップの下部と水平な部分へ移動
-    move_arm_lower(aa[0], aa[1])
     #アームをコップをくっつける
-    move_arm_lower_catch(aa[0], aa[1])
+    move_arm_upper(aa[0], aa[1])
+    print("グリッパ下にボールを入れた紙コップを設置してください。")
     rospy.sleep(stop_time)
+    print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_lower_up(aa[0], aa[1])
     move_max_velocity()
@@ -336,11 +336,11 @@ def main():
     aa = position_manager(True, False, 0, 0, False)
     #グリッパを開く
     move_gripper(1.3)
-    #アームをコップの下部と水平な部分へ移動
-    move_arm_upper(aa[0], aa[1])
     #アームをコップの下部とくっつける
-    move_arm_upper_catch(aa[0], aa[1])
+    move_arm_upper(aa[0], aa[1])
+    print("グリッパ下に空の紙コップを設置してください。")
     rospy.sleep(stop_time)
+    print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_upper_up(aa[0], aa[1])
     move_max_velocity()
@@ -353,10 +353,11 @@ def main():
     aa = position_manager(True, False, 0, 0, False)
     #グリッパを開く
     move_gripper(1.3)
-    #アームをボールと水平な部分へ移動
-    move_arm_ball(aa[0], aa[1] + 0.1)
     #アームをボールとくっつける
+    move_arm_ball(aa[0], aa[1] + 0.1)
+    print("グリッパ下にボールを設置してください。")
     rospy.sleep(stop_time)
+    print("次の動作へ進みます。")
     #アームを持ち上げコップから離れたらホームへ戻る
     move_arm_ball(aa[0], aa[1] + 0.1)
     move_max_velocity()

@@ -343,7 +343,7 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.26)
+    move_gripper(0.24)
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
     rospy.sleep(stop_time)
@@ -396,7 +396,7 @@ def main():
     move_arm_lower_catch(aa[0] + 0.05, aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.26)
+    move_gripper(0.24)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0] + 0.05, aa[1])
     rospy.sleep(stop_time)
@@ -500,7 +500,7 @@ def main():
     move_arm_lower_catch(aa[0] + 0.1, aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.26)
+    move_gripper(0.24)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0] + 0.1, aa[1])
     rospy.sleep(stop_time)

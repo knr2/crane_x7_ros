@@ -308,7 +308,10 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_lower_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_lower_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
@@ -335,7 +338,10 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_upper(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_upper_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_upper_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
@@ -383,7 +389,10 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_lower_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_lower_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
@@ -410,7 +419,10 @@ def main():
     #アームをコップの上部と水平な部分へ移動
     move_arm_upper(aa[0], aa[1])
     #アームをコップの上部とくっつける
+    move_arm_upper_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_upper_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     move_arm_upper_up(aa[0], aa[1])
@@ -438,7 +450,10 @@ def main():
     #アームをコップの上部と水平な部分へ移動
     move_arm_upper(aa[0], aa[1])
     #アームをコップの上部とくっつける
+    move_arm_upper_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_upper_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     move_arm_upper_up(aa[0], aa[1])
@@ -468,7 +483,10 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_lower_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_lower_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)

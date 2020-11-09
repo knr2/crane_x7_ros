@@ -471,7 +471,7 @@ def main():
     #アームを手前に移動
     move_arm_upper_up(aa[0] + 0.1, aa[1] + 0.2)
     #アームを下げる
-    move_arm_upper(aa[0] + 0.1, aa[1] + 0.2
+    move_arm_upper(aa[0] + 0.1, aa[1] + 0.2)
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る

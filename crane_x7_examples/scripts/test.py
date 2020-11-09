@@ -8,14 +8,12 @@
 """
 
 """
-流れ
+流れ1
 準備
     コップAとそれに対応するボールA、コップBとそれに対応するボールBを用意する
     コップAとコップBは同y、ｚ座標に置く
     コップA中にはボールAを入れておき、ボールBはコップBの横においておく
-
         #ボールの確認
-
     1.	コップAの手前に移動
     2.	アーム先端を下に向ける
     3.	アームを垂直に下げる
@@ -36,14 +34,10 @@
     18.	コップBを横移動させ元の位置へ戻す
     19.	アームを全開に
     20.	垂直に持ち上げる
-
         #パフォーマンス（消す前の）
-
     1.	ホームへ戻る
     2.	アームを全開に
-
         #ボールを瞬間移動
-
     1.	コップBの上に移動
     2.	アーム先端を下に向ける
     3.	アームを垂直に下げる
@@ -61,10 +55,7 @@
     15.	目標座標へ到着後1秒ほど停止
     16.	コップAを下げ、アームを全開に
     17.	垂直に持ち上げる
-
-
         #ボールが瞬間移動したことを見せる
-
     1.	コップAの上に移動
     2.	コップAの上部を握る
     3.	アーム先端を下に向ける
@@ -122,15 +113,12 @@ def main():
     使い方
     ハンドをつかんだ時は
     position_manager(False,False,x,y,True)
-
     ハンドをはなした時は
     position_manager(False,False,x,y,False)
-
     Aカップをつかみたい時の手先の位置を知りたいときは
     aa = position_manager(True,True,0,0,False)
     x = aa[0]
     y = aa[1]
-
     BBカップをつかみたい時の手先の位置を知りたいときは
     aa = position_manager(True,False,0,0,False)
     x = aa[0]
@@ -142,7 +130,7 @@ def main():
         position_ret=[0.0,0.0]
         if master_judge == True:
             if len(position_base)>0:
-            
+
             #ホンスワン
                 if paper_cup == True:
                     position_ret[0] = position_base[len(position_base)-1][2]
@@ -154,10 +142,10 @@ def main():
                     position_ret[1] = position_base[len(position_base)-1][1]
                     #position_historyの末尾の紙Bコップのx座標y座標
                     return position_ret
-            
+
             else:
                 return position_ret
-            
+
         else:
             #熊谷さん
             #position_base配列の末尾にx,yを追加
@@ -178,7 +166,7 @@ def main():
                 elif Bcup_tukamu == True:
                     position_base.append([position_base[len(position_base)-1][0],position_base[len(position_base)-1][1],x,y])
                     Bcup_tukamu = False
-                    
+
             return position_ret
 
     ###
@@ -218,7 +206,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.075
+        target_pose.position.z = 0.1
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -232,7 +220,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.075
+        target_pose.position.z = 0.1
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -246,8 +234,8 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
-        target_pose.position.z = -0.01
-        q = quaternion_from_euler(-3.14/2.0 + 0.2, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
+        target_pose.position.z = 0.01
+        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -260,8 +248,8 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
-        target_pose.position.z = -0.01
-        q = quaternion_from_euler(-3.14/2.0 + 0.2, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
+        target_pose.position.z = 0.01
+        q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
@@ -274,7 +262,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.075 + 0.15
+        target_pose.position.z = 0.1 + 0.15
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -306,10 +294,10 @@ def main():
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
     arm.go()
- 
+
     #ハンドを開く
     move_gripper(1.3)
-    
+
     #コップA下部を掴む-----1
     #流れ　1,2,3,4,5,6,7,8,9
 
@@ -320,7 +308,10 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_lower_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_lower_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
     move_gripper(0.28)
     #アームを持ち上げる(空中で停止)
@@ -347,9 +338,12 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_upper(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_upper_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_upper_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.28)
+    move_gripper(0.24)
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
     rospy.sleep(stop_time)
@@ -395,18 +389,23 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_lower_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_lower_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
+    move_arm_lower_catch(aa[0] + 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.28)
+    move_gripper(0.24)
     #アームを持ち上げる(空中で停止)
-    move_arm_lower_up(aa[0], aa[1])
+    move_arm_lower_up(aa[0] + 0.05, aa[1])
     rospy.sleep(stop_time)
     #アームを下げる
-    move_arm_lower_catch(aa[0], aa[1])
+    move_arm_lower_catch(aa[0] + 0.05, aa[1])
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_lower_up(aa[0], aa[1])
+    move_arm_lower_up(aa[0] + 0.05, aa[1])
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
@@ -422,22 +421,28 @@ def main():
     #アームをコップの上部と水平な部分へ移動
     move_arm_upper(aa[0], aa[1])
     #アームをコップの上部とくっつける
+    move_arm_upper_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_upper_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
+    move_arm_upper_catch(aa[0] + 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.28)
-    move_arm_upper_up(aa[0], aa[1])
+    move_gripper(0.27)
+    move_arm_upper_up(aa[0] + 0.05, aa[1])
     #アームを持ち上げる(空中で停止)
-    move_arm_upper_up(aa[0], aa[1])
+    move_arm_upper_up(aa[0] + 0.05, aa[1])
     rospy.sleep(stop_time)
     #アームを下げる
-    move_arm_upper_catch(aa[0], aa[1])
+    move_arm_upper_catch(aa[0] + 0.05, aa[1])
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_upper_up(aa[0], aa[1])
+    move_arm_upper_up(aa[0] + 0.05, aa[1])
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
+
 
     #コップAの上部をつかむ-----6
     #中身の確認
@@ -449,21 +454,28 @@ def main():
     #アームをコップの上部と水平な部分へ移動
     move_arm_upper(aa[0], aa[1])
     #アームをコップの上部とくっつける
+    move_arm_upper_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_upper_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
+    move_arm_upper_catch(aa[0] + 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
+    move_arm_upper_catch(aa[0] + 0.1, aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.28)
-    move_arm_upper_up(aa[0], aa[1])
+    move_gripper(0.27)
+    move_arm_upper_up(aa[0] + 0.1, aa[1])
     #アームを持ち上げる(空中で停止)
-    move_arm_upper_up(aa[0], aa[1])
+    move_arm_upper_up(aa[0] + 0.1, aa[1])
     rospy.sleep(stop_time)
     #アームを手前に移動
-    move_arm_upper_up(aa[0] - 0.13, aa[1])
+    move_arm_upper_up(aa[0] + 0.05, aa[1])
     #アームを下げる
-    move_arm_upper(aa[0], aa[1])
+    move_arm_upper(aa[0] + 0.05, aa[1])
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_upper_up(aa[0] - 0.13, aa[1])
+    move_arm_upper_up(aa[0] + 0.05, aa[1])
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
@@ -479,24 +491,30 @@ def main():
     #アームをコップの下部と水平な部分へ移動
     move_arm_lower(aa[0], aa[1])
     #アームをコップの下部とくっつける
+    move_arm_lower_catch(aa[0] - 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
     move_arm_lower_catch(aa[0], aa[1])
+    rospy.sleep(stop_time / 7)
+    move_arm_lower_catch(aa[0] + 0.05, aa[1])
+    rospy.sleep(stop_time / 7)
+    move_arm_lower_catch(aa[0] + 0.1, aa[1])
+    rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.28)
+    move_gripper(0.24)
     #アームを持ち上げる(空中で停止)
-    move_arm_lower_up(aa[0], aa[1])
+    move_arm_lower_up(aa[0] + 0.1, aa[1])
     rospy.sleep(stop_time)
     #アームを手前に移動
-    move_arm_lower_up(aa[0], aa[1] - 0.15)
+    move_arm_lower_up(aa[0] + 0.05, aa[1])
     #アームを下げる
-    move_arm_lower(aa[0], aa[1])
+    move_arm_lower(aa[0] + 0.05, aa[1])
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_lower_up(aa[0], aa[1] - 0.15)
+    move_arm_lower_up(aa[0] + 0.05, aa[1])
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
-    """
 
 
 

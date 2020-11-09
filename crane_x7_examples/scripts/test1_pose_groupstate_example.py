@@ -5,10 +5,11 @@
 引用元
 紙コップ　→　https://github.com/GakuKuwano/crane_x7_ros/blob/master/crane_x7_gazebo/worlds/table2.world
 アーム動作　→　https://github.com/GakuKuwano/crane_x7_ros/blob/master/crane_x7_examples/scripts/papercup_tower.py
+
 """
 
 """
-流れ
+流れ1
 準備
     コップAとそれに対応するボールA、コップBとそれに対応するボールBを用意する
     コップAとコップBは同y、ｚ座標に置く
@@ -218,7 +219,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.075
+        target_pose.position.z = 0.08
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -230,9 +231,9 @@ def main():
     # コップ上部をつかむ位置へ移動２
     def move_arm_upper_catch(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 0.005
+        target_pose.position.x = pos_x - 0.005 + 0.04
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.075
+        target_pose.position.z = 0.08
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -246,7 +247,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.13
         target_pose.position.y = pos_y
-        target_pose.position.z = -0.01
+        target_pose.position.z = 0.00
         q = quaternion_from_euler(-3.14/2.0 + 0.2, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -260,7 +261,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
-        target_pose.position.z = -0.01
+        target_pose.position.z = 0.00
         q = quaternion_from_euler(-3.14/2.0 + 0.2, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -272,9 +273,9 @@ def main():
     # コップの上を持ち上へ移動
     def move_arm_upper_up(pos_x, pos_y):
         target_pose = geometry_msgs.msg.Pose()
-        target_pose.position.x = pos_x - 0.005
+        target_pose.position.x = pos_x - 0.005 + 0.04
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.075 + 0.15
+        target_pose.position.z = 0.08 + 0.15
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -288,7 +289,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x - 0.005
         target_pose.position.y = pos_y
-        target_pose.position.z = -0.01 + 0.15
+        target_pose.position.z = 0.15
         q = quaternion_from_euler(-3.14/2.0, 3.14, -3.14/2.0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -354,10 +355,10 @@ def main():
     move_arm_upper_up(aa[0], aa[1])
     rospy.sleep(stop_time)
     #アームをボールの真上へ(空中で停止)
-    move_arm_upper_up(aa[0], aa[1] + 0.1)
+    move_arm_upper_up(aa[0], aa[1] + 0.12)
     rospy.sleep(stop_time)
     #アームを下げカップをボールにかぶせる
-    move_arm_upper_catch(aa[0], aa[1] + 0.1)
+    move_arm_upper_catch(aa[0], aa[1] + 0.12)
     #元の位置へ戻す
     move_arm_upper_catch(aa[0], aa[1])
     #グリッパを開き、コップを放す
@@ -439,6 +440,7 @@ def main():
     arm.set_named_target("home")
     arm.go()
 
+    """
     #コップAの上部をつかむ-----6
     #中身の確認
 
@@ -457,13 +459,13 @@ def main():
     move_arm_upper_up(aa[0], aa[1])
     rospy.sleep(stop_time)
     #アームを手前に移動
-    move_arm_upper_up(aa[0] - 0.13, aa[1])
+    move_arm_upper_up(aa[0], aa[1] + 0.15)
     #アームを下げる
     move_arm_upper(aa[0], aa[1])
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_upper_up(aa[0] - 0.13, aa[1])
+    move_arm_upper_up(aa[0], aa[1] + 0.15)
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()

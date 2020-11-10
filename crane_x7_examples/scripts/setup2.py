@@ -75,18 +75,20 @@
     17.	ホームへ戻る
 """
 
+
+
+
 import rospy
 import moveit_commander
 import geometry_msgs.msg
 import rosnode
 from tf.transformations import quaternion_from_euler
-
-
 def main():
     rospy.init_node("crane_x7_pick_and_place_controller")
     robot = moveit_commander.RobotCommander()
     arm = moveit_commander.MoveGroupCommander("arm")
-    def move_max_velocity(value = 0.5):
+
+    def move_max_velocity(value=0.5):
         arm.set_max_velocity_scaling_factor(value)
     gripper = moveit_commander.MoveGroupCommander("gripper")
 
@@ -105,7 +107,7 @@ def main():
     ###
 
     #紙Aコップのx座標　紙Aコップのy座標　紙Bコップx座標 紙Bコップy座標
-    position_base =[[0.29, 0.13, 0.29, -0.11]]
+    position_base = [[0.29, 0.13, 0.29, -0.11]]
     Acup_tukamu = False
     Bcup_tukamu = False
 
@@ -124,14 +126,14 @@ def main():
     x = aa[0]
     y = aa[1]
     """
-    def position_manager(master_judge,paper_cup,x,y,tukami):
+    def position_manager(master_judge, paper_cup, x, y, tukami):
         global Acup_tukamu
         global Bcup_tukamu
-        position_ret=[0.0,0.0]
+        position_ret = [0.0, 0.0]
         if master_judge == True:
-            if len(position_base)>0:
+            if len(position_base) > 0:
 
-            #ホンスワン
+                #ホンスワン
                 if paper_cup == True:
                     position_ret[0] = position_base[len(position_base)-1][2]
                     position_ret[1] = position_base[len(position_base)-1][3]
@@ -152,19 +154,23 @@ def main():
             if tukami == True:
                 #Aをつかんでいる場合
                 if position_base[len(position_base)-1][0] == x and position_base[len(position_base)-1][1] == y:
-                    position_base.append([x,y,position_base[len(position_base)-1][2],position_base[len(position_base)-1][3]])
+                    position_base.append([x, y, position_base[len(
+                        position_base)-1][2], position_base[len(position_base)-1][3]])
                     Acup_tukamu = True
                 #Bをつかんでいる場合
                 elif position_base[len(position_base)-1][2] == x and position_base[len(position_base)-1][3] == y:
-                    position_base.append([position_base[len(position_base)-1][0],position_base[len(position_base)-1][1],x,y])
+                    position_base.append([position_base[len(
+                        position_base)-1][0], position_base[len(position_base)-1][1], x, y])
                     Bcup_tukamu = True
             else:
                 #Aをはなした時
                 if Acup_tukamu == True:
-                    position_base.append([x,y,position_base[len(position_base)-1][2],position_base[len(position_base)-1][3]])
+                    position_base.append([x, y, position_base[len(
+                        position_base)-1][2], position_base[len(position_base)-1][3]])
                     Acup_tukamu = False
                 elif Bcup_tukamu == True:
-                    position_base.append([position_base[len(position_base)-1][0],position_base[len(position_base)-1][1],x,y])
+                    position_base.append([position_base[len(
+                        position_base)-1][0], position_base[len(position_base)-1][1], x, y])
                     Bcup_tukamu = False
 
             return position_ret
@@ -177,6 +183,16 @@ def main():
     ###     a-group
     ###
 
+
+    stop_time = 2.0  # 停止する時間を指定
+
+    weak_position = 0.13  # 上をつかむ際のz
+    weak_power = 0.24  # 上をつかむ際の力
+    
+    strong_position = 0.11  # 下をつかむ際のｚ
+    strong_power = 0.28  # 下をつかむ際の力
+
+
     # アーム初期ポーズを表示
     arm_initial_pose = arm.get_current_pose().pose
     print("Arm initial pose:")
@@ -186,7 +202,7 @@ def main():
     def move_gripper(pou):
         gripper.set_joint_value_target([pou, pou])
         gripper.go()
-    
+
     # アームを移動する
     def move_arm(pos_x, pos_y, pos_z):
         target_pose = geometry_msgs.msg.Pose()
@@ -206,7 +222,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.13 + 0.1
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -220,7 +236,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.13
+        target_pose.position.z = weak_position
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -234,7 +250,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.01 + 0.19
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -248,7 +264,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.1
+        target_pose.position.z = strong_position
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -262,7 +278,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.1 + 0.15
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -276,7 +292,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.1 + 0.15
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -303,8 +319,6 @@ def main():
     ###     a-group-end
     ###
 
-    stop_time = 2.0   #停止する時間を指定
-
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
     arm.go()
@@ -328,7 +342,6 @@ def main():
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
-
 
     #コップB-----2
 

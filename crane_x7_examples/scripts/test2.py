@@ -177,6 +177,16 @@ def main():
     ###     a-group
     ###
 
+
+    stop_time = 2.0  # 停止する時間を指定
+
+    weak_position = 0.13  # 上をつかむ際のz
+    weak_power = 0.24  # 上をつかむ際の力
+    
+    strong_position = 0.11  # 下をつかむ際のｚ
+    strong_power = 0.28  # 下をつかむ際の力
+
+
     # アーム初期ポーズを表示
     arm_initial_pose = arm.get_current_pose().pose
     print("Arm initial pose:")
@@ -186,7 +196,7 @@ def main():
     def move_gripper(pou):
         gripper.set_joint_value_target([pou, pou])
         gripper.go()
-    
+
     # アームを移動する
     def move_arm(pos_x, pos_y, pos_z):
         target_pose = geometry_msgs.msg.Pose()
@@ -206,7 +216,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.13 + 0.1
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -220,7 +230,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.13
+        target_pose.position.z = weak_position
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -234,7 +244,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.01 + 0.19
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -248,7 +258,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.1
+        target_pose.position.z = strong_position
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -262,7 +272,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.1 + 0.15
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -276,7 +286,7 @@ def main():
         target_pose = geometry_msgs.msg.Pose()
         target_pose.position.x = pos_x
         target_pose.position.y = pos_y
-        target_pose.position.z = 0.1 + 0.15
+        target_pose.position.z = 0.25
         q = quaternion_from_euler(0, 3.14, 0)  # 上方から掴みに行く場合
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
@@ -289,7 +299,6 @@ def main():
     ###     a-group-end
     ###
 
-    stop_time = 2.0   #停止する時間を指定
 
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
@@ -311,7 +320,7 @@ def main():
     move_arm_lower_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.28)
+    move_gripper(strong_power)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0], aa[1])
     rospy.sleep(stop_time)
@@ -339,7 +348,7 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.24)
+    move_gripper(weak_power)
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
     rospy.sleep(stop_time)
@@ -388,7 +397,7 @@ def main():
     move_arm_lower_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.24)
+    move_gripper(strong_power)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0], aa[1])
     rospy.sleep(stop_time)
@@ -416,7 +425,7 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.27)
+    move_gripper(weak_power)
     move_arm_upper_up(aa[0], aa[1])
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
@@ -445,19 +454,19 @@ def main():
     move_arm_upper_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.27)
+    move_gripper(weak_power)
     move_arm_upper_up(aa[0], aa[1])
     #アームを持ち上げる(空中で停止)
     move_arm_upper_up(aa[0], aa[1])
     rospy.sleep(stop_time)
     #アームを手前に移動
-    move_arm_upper_up(aa[0], aa[1] - 0.1)
+    move_arm_upper_up(aa[0], aa[1] - 0.05)
     #アームを下げる
-    move_arm_upper(aa[0], aa[1] - 0.1)
+    move_arm_upper_catch(aa[0], aa[1] - 0.05)
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_upper_up(aa[0], aa[1])
+    move_arm_upper_up(aa[0], aa[1] - 0.05)
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()
@@ -476,18 +485,18 @@ def main():
     move_arm_lower_catch(aa[0], aa[1])
     rospy.sleep(stop_time / 7)
     #グリッパを閉じ、コップをつかむ
-    move_gripper(0.24)
+    move_gripper(strong_power)
     #アームを持ち上げる(空中で停止)
     move_arm_lower_up(aa[0], aa[1])
     rospy.sleep(stop_time)
     #アームを手前に移動
-    move_arm_lower_up(aa[0], aa[1] + 0.1)
+    move_arm_lower_up(aa[0], aa[1] + 0.05)
     #アームを下げる
-    move_arm_lower(aa[0], aa[1] + 0.1)
+    move_arm_lower_catch(aa[0], aa[1] + 0.05)
     #グリッパを開き、コップを放す
     move_gripper(1.3)
     #アームを持ち上げコップから離れたらホームへ戻る
-    move_arm_lower_up(aa[0], aa[1] + 0.1)
+    move_arm_lower_up(aa[0], aa[1] + 0.05)
     move_max_velocity()
     arm.set_named_target("home")
     arm.go()

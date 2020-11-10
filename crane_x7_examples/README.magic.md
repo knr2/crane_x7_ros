@@ -51,12 +51,12 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 
 `demo.launch`を実行している状態で実行できます。
 
-- [setup.py](#setup.py)
-- [test1_pose_groupstate_example](#test1_pose_groupstate_example)
+- [setup2.py](#setup2.py)
+- [test2](#test2.py)
 
 ---
 
-### setup
+### setup2
 
 マジックの準備をするためのコードです。
 
@@ -65,12 +65,12 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 次のコマンドを実行します。
 
 ```sh
-rosrun crane_x7_examples setup.py
+rosrun crane_x7_examples setup2.py
 ```
 
 ---
 
-### pose_groupstate_example
+### test2
 
 マジックを行うためのコードです。
 
@@ -80,5 +80,5 @@ rosrun crane_x7_examples setup.py
 次のコマンドを実行します。
 
 ```sh
-rosrun crane_x7_examples test1_pose_groupstate_example.py
+rosrun crane_x7_examples test2.py
 ```

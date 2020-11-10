@@ -186,11 +186,11 @@ def main():
 
     stop_time = 2.0  # 停止する時間を指定
 
-    weak_position = 0.13  # 上をつかむ際のz
-    weak_power = 0.24  # 上をつかむ際の力
+    weak_position = 0.15  # 上をつかむ際のz
+    weak_power = 0.22  # 上をつかむ際の力
     
-    strong_position = 0.11  # 下をつかむ際のｚ
-    strong_power = 0.28  # 下をつかむ際の力
+    strong_position = 0.14  # 下をつかむ際のｚ
+    strong_power = 0.17  # 下をつかむ際の力
 
 
     # アーム初期ポーズを表示

@@ -47,7 +47,7 @@ roslaunch crane_x7_bringup demo.launch fake_execution:=false port:=/dev/ttyUSB1
 roslaunch crane_x7_gazebo crane_x7_with_table.launch
 ```
 
-## Run Examples
+## 実行するプログラム
 
 `demo.launch`を実行している状態で実行できます。
 

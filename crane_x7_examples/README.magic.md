@@ -51,8 +51,8 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 
 `demo.launch`を実行している状態で実行できます。
 
-- [setup2.py](#setup2.py)
-- [test2](#test2.py)
+- [setup2](#setup2)
+- [test2](#test2)
 
 ---
 

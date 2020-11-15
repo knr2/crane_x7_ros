@@ -47,6 +47,21 @@ roslaunch crane_x7_bringup demo.launch fake_execution:=false port:=/dev/ttyUSB1
 roslaunch crane_x7_gazebo crane_x7_with_table.launch
 ```
 
+## インストール方法
+
+次のコマンドを実行します。
+
+```sh
+cd catkin_ws/src
+rm -rf crane_x7_ros
+git clone https://github.com/knr2/crane_x7_ros.git
+cd ..
+catkin_make
+source ~/.bashrc
+```
+
+---
+
 ## 実行方法
 
 `demo.launch`を実行している状態で実行できます。

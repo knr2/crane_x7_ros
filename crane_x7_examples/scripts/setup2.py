@@ -184,7 +184,7 @@ def main():
     ###
 
 
-    stop_time = 2.0  # 停止する時間を指定
+    stop_time = 5.0  # 停止する時間を指定
 
     weak_position = 0.15  # 上をつかむ際のz
     weak_power = 0.22  # 上をつかむ際の力

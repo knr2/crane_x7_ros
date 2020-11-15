@@ -77,6 +77,8 @@ rosrun crane_x7_examples setup2.py
 コード内で記述されている`home`に関する情報はSRDFファイル[crane_x7_moveit_config/config/crane_x7.srdf](../crane_x7_moveit_config/config/crane_x7.srdf)
 に記載されています。
 
+紙コップやボールの準備がまだの場合は先に[setup2](#setup2)を実行して、準備を行ってください。
+
 次のコマンドを実行します。
 
 ```sh
